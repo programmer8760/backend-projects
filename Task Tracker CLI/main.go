@@ -2,8 +2,12 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func main() {
-	fmt.Println("411")
+	args := os.Args[1:]
+	for i := 0; i < len(args); i++ {
+		fmt.Println(args[i])
+	}
 }
