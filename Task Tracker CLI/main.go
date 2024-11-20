@@ -10,6 +10,7 @@ import (
 func main() {
 	h := handler.Handler{Commands: make(map[string]cmd.Command)}
 	h.AddCommand(cmd.AddTask)
+	h.AddCommand(cmd.ListTasks)
 
 	args := os.Args[1:]
 	if len(args) == 0 {

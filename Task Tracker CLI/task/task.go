@@ -1,16 +1,19 @@
 package task
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Task struct {
 	ID          int
 	Description string
-	Status      status
+	Status      Status
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 }
 
-type status int
+type Status int
 
 const (
 	Todo = iota
@@ -18,7 +21,7 @@ const (
 	Done
 )
 
-func Make(id int, description string, status status, createdAt, updatedAt time.Time) Task {
+func Make(id int, description string, status Status, createdAt, updatedAt time.Time) Task {
 	return Task{
 		ID:          id,
 		Description: description,
@@ -27,7 +30,7 @@ func Make(id int, description string, status status, createdAt, updatedAt time.T
 		UpdatedAt:   updatedAt}
 }
 
-func (s status) String() string {
+func (s Status) String() string {
 	switch s {
 	case Todo:
 		return "todo"
@@ -37,5 +40,22 @@ func (s status) String() string {
 		return "done"
 	default:
 		return "unknown-status"
+	}
+}
+
+func (t Task) String() string {
+	return fmt.Sprintf("%v\t%s\t%s\t%s\t%s", t.ID, t.Description, t.Status, t.CreatedAt.Format("01.02.06 15:04"), t.UpdatedAt.Format("01.02.06 15:04"))
+}
+
+func ParseStatus(s string) Status {
+	switch s {
+	case "todo":
+		return 0
+	case "in-progress":
+		return 1
+	case "done":
+		return 2
+	default:
+		return -1
 	}
 }
