@@ -32,10 +32,10 @@ var ListTasks Command = Command{
 			for _, t := range tasks {
 				result += fmt.Sprintln(t)
 			}
-		} else {
+		} else if len(status) == 1 {
 			filter := task.ParseStatus(status[0])
 			if filter == -1 {
-				return "Invalid status", nil
+				return fmt.Sprintf("Invalid input. Unknown task status \"%v\"", status[0]), nil
 			} else {
 				for _, t := range tasks {
 					if t.Status == filter {
@@ -43,6 +43,8 @@ var ListTasks Command = Command{
 					}
 				}
 			}
+		} else {
+			return "Invalid input. Correct command usage: task-tracker list [status]", nil
 		}
 		return result, nil
 	},

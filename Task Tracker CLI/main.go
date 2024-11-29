@@ -11,6 +11,7 @@ func main() {
 	h := handler.Handler{Commands: make(map[string]cmd.Command)}
 	h.AddCommand(cmd.AddTask)
 	h.AddCommand(cmd.ListTasks)
+	h.AddCommand(cmd.UpdateTask)
 
 	args := os.Args[1:]
 	if len(args) == 0 {
@@ -26,8 +27,8 @@ func main() {
 
 	result, err := command.Function(args[1:])
 	if err != nil {
-		fmt.Print(result, err)
+		fmt.Println(result, err)
 	} else {
-		fmt.Print(result)
+		fmt.Println(result)
 	}
 }

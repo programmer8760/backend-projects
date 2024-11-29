@@ -14,6 +14,10 @@ var AddTask Command = Command{
 	Name:        "add",
 	Description: "Adds new task with the given description",
 	Function: func(description []string) (string, error) {
+		if len(description) != 1 {
+			return "Invalid input. Correct command usage: task-tracker add [description]", nil
+		}
+
 		var tasks []task.Task
 
 		file, err := os.Open("tasks.json")

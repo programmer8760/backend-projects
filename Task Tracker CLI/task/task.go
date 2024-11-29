@@ -59,3 +59,7 @@ func ParseStatus(s string) Status {
 		return -1
 	}
 }
+
+func ChangeStatus(t Task, s Status) Task {
+	return Make(t.ID, t.Description, s, t.CreatedAt, t.UpdatedAt)
+}
