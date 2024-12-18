@@ -11,19 +11,16 @@ import (
 
 var UpdateTask Command = Command{
 	Name:        "update",
-	Description: "Sets task with a given ID a given status",
+	Description: "Updates description of a task",
 	Function: func(args []string) (string, error) {
 		if len(args) != 2 {
-			return "Invalid input. Correct command usage: task-tracker update [ID] [status]", nil
+			return "Invalid input. Correct command usage: update [ID] [description]", nil
 		}
 		id, err := strconv.Atoi(args[0])
 		if err != nil {
 			return fmt.Sprintf("Invalid input. Can't convert \"%v\" to an integer", args[0]), nil
 		}
-		status := task.ParseStatus(args[1])
-		if status == -1 {
-			return fmt.Sprintf("Invalid input. Unknown task status \"%v\"", args[1]), nil
-		}
+		description := args[1]
 		var tasks []task.Task
 
 		file, err := os.Open("tasks.json")
@@ -42,7 +39,7 @@ var UpdateTask Command = Command{
 
 		for i, t := range tasks {
 			if t.ID == id {
-				tasks[i] = task.ChangeStatus(t, status)
+				tasks[i] = task.ChangeDescription(t, description)
 				file, err := json.MarshalIndent(tasks, "", "  ")
 				if err != nil {
 					return "Error when marshalling:\n", err
@@ -52,7 +49,7 @@ var UpdateTask Command = Command{
 				if err != nil {
 					return "Error when writing into file:\n", err
 				}
-				return fmt.Sprintf("Task updated successfully (ID: %v, status: %v)", id, status), nil
+				return fmt.Sprintf("Task updated successfully (ID: %v, description: %v)", id, description), nil
 			}
 		}
 		return fmt.Sprintf("Couldn't find task with ID %v", id), nil
