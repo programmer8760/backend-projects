@@ -13,10 +13,11 @@ import (
 var AddTask Command = Command{
 	Name:        "add",
 	Description: "Adds new task with the given description",
-	Function: func(description []string) (string, error) {
-		if len(description) != 1 {
-			return "Invalid input. Correct command usage: task-tracker add [description]", nil
+	Function: func(args []string) (string, error) {
+		if len(args) != 1 {
+			return "Invalid input. Correct command usage: add [description]", nil
 		}
+		description := args[0]
 
 		var tasks []task.Task
 
@@ -48,7 +49,7 @@ var AddTask Command = Command{
 
 		for i := 1; ; i++ {
 			if !slices.Contains(ids, i) {
-				newTask := task.Make(i, description[0], task.Todo, time.Now(), time.Now())
+				newTask := task.Make(i, description, task.Todo, time.Now(), time.Now())
 				tasks = append(tasks, newTask)
 
 				file, err := json.MarshalIndent(tasks, "", "  ")
