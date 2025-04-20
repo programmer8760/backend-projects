@@ -1,0 +1,61 @@
+#title {
+    margin-top: 2vh;
+    margin-left: 3vw;
+    font-size: 6vmax;
+    text-align: left;
+}
+
+.topbar {
+    margin-top: -2vh;
+    margin-left: 3vw;
+}
+
+.topbar-button {
+    display: inline;
+    float: left;
+    margin-right: 5vw;
+    block-size: 1.25em;
+    font-size: 6vw;
+    transition: color 500ms, box-shadow 500ms;
+}
+.topbar-button:hover {
+    color: rgb(72, 104, 233);
+    box-shadow: 0 0.15em rgb(72, 104, 233);
+    cursor: pointer;
+    transition: color 500ms, box-shadow 500ms;
+}
+.selected {
+    color: rgb(72, 104, 233);
+    box-shadow: 0 0.15em rgb(72, 104, 233);
+}
+
+.workspace {
+    text-align: left;
+    margin-top: 18vh;
+    margin-left: 3vw;
+}
+
+.label {
+    font-size: 6vw;
+    margin-top: 1vh;
+    float: left;
+}
+
+.input-field {
+    margin-top: 1vh;
+    font-family: "Playtime";
+    font-size: 6vw;
+    border: 2px solid black;
+    border-radius: 8px;
+    width: 65vw;
+    height: 5.5vh;
+}
+
+.selector {
+    margin-top: 1vh;
+    font-family: "Playtime";
+    font-size: 5vw;
+    width: 67vw;
+    border: 2px solid black;
+    border-radius: 8px;
+}
