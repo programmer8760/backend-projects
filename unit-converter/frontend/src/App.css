@@ -1,4 +1,4 @@
-#title {
+.big-text {
     margin-top: 2vh;
     margin-left: 3vw;
     font-size: 6vmax;
@@ -17,11 +17,11 @@
     block-size: 1.25em;
     font-size: 6vw;
     transition: color 500ms, box-shadow 500ms;
+    cursor: pointer;
 }
 .topbar-button:hover {
     color: rgb(72, 104, 233);
     box-shadow: 0 0.15em rgb(72, 104, 233);
-    cursor: pointer;
     transition: color 500ms, box-shadow 500ms;
 }
 .selected {
@@ -36,26 +36,43 @@
 }
 
 .label {
+    display: block;
     font-size: 6vw;
-    margin-top: 1vh;
-    float: left;
+    margin-bottom: 1vh;
 }
 
 .input-field {
-    margin-top: 1vh;
+    display: block;
     font-family: "Playtime";
     font-size: 6vw;
     border: 2px solid black;
     border-radius: 8px;
     width: 65vw;
     height: 5.5vh;
+    margin-bottom: 1vh;
 }
 
 .selector {
-    margin-top: 1vh;
+    display: block;
     font-family: "Playtime";
     font-size: 5vw;
     width: 67vw;
     border: 2px solid black;
     border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 1vh;
+}
+
+.button {
+    display: block;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-family: "Playtime";
+    font-size: 5vw;
+    cursor: pointer;
+    color: black;
+    background: white;
+    width: 35vw;
+    height: 9vh;
+    margin-top: 2vh;
 }
