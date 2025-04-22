@@ -18,8 +18,8 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:  "unit-converter",
-		Width:  512,
-		Height: 768,
+		Width:  355,
+		Height: 493,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
