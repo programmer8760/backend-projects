@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { ConvertLength, ConvertWeight } from "../wailsjs/go/main/App";
+import { ConvertLength, ConvertWeight, ConvertTemperature } from "../wailsjs/go/main/App";
 
 function App() {
     const [currentPage, setPage] = useState("length");
@@ -28,6 +28,18 @@ function App() {
         const from = parseInt(formData.get("from"));
         const to = parseInt(formData.get("to"));
         ConvertWeight(weight, from, to).then((response) => {
+            setResult(response);
+        });
+    }
+
+    const convertTemperature = (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        const temperature = parseFloat(formData.get("temperature"));
+        const from = parseInt(formData.get("from"));
+        const to = parseInt(formData.get("to"));
+        ConvertTemperature(temperature, from, to).then((response) => {
             setResult(response);
         });
     }
@@ -98,20 +110,20 @@ function App() {
                 );
             case "temperature":
                 return (
-                    <form id="temperature-form">
+                    <form onSubmit={convertTemperature} id="temperature-form">
                         <label className="label">Enter the temperature to convert</label>
                         <input name="temperature" className="input-field"></input>
                         <label className="label">Unit to convert from</label>
                         <select name="from" className="selector" form="temperature-form">
-                            <option selected="selected" value="celsius">Celsius</option>
-                            <option value="fahrenheit">Fahrenheit</option>
-                            <option value="kelvin">Kelvin</option>
+                            <option selected="selected" value="0">Celsius</option>
+                            <option value="1">Fahrenheit</option>
+                            <option value="2">Kelvin</option>
                         </select>
                         <label className="label">Unit to convert to</label>
                         <select name="to" className="selector" form="temperature-form">
-                            <option value="celsius">Celsius</option>
-                            <option selected="selected" value="fahrenheit">Fahrenheit</option>
-                            <option value="kelvin">Kelvin</option>
+                            <option value="0">Celsius</option>
+                            <option selected="selected" value="1">Fahrenheit</option>
+                            <option value="2">Kelvin</option>
                         </select>
                         <button type="submit" className="button">Convert</button>
                     </form>

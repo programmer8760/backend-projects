@@ -38,3 +38,21 @@ func (a *App) ConvertWeight(weight float64, from int, to int) string {
 	unitsNames := [5]string{"mg", "g", "kg", "oz", "lb"}
 	return fmt.Sprintf("%v%s = %v%s", weight, unitsNames[from], math.Round(weight*scales[from]/scales[to]*10000)/10000, unitsNames[to])
 }
+
+func (a *App) ConvertTemperature(temperature float64, from int, to int) string {
+	unitsNames := [3]string{"°C", "°F", "K"}
+	convertedT := temperature
+	switch from {
+	case 1:
+		convertedT = (temperature - 32) * 5 / 9
+	case 2:
+		convertedT -= 273.15
+	}
+	switch to {
+	case 1:
+		convertedT = (convertedT * 9 / 5) + 32
+	case 2:
+		convertedT += 273.15
+	}
+	return fmt.Sprintf("%v%s = %v%s", temperature, unitsNames[from], math.Round(convertedT*10000)/10000, unitsNames[to])
+}

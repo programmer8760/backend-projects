@@ -3,6 +3,8 @@
 
 export function ConvertLength(arg1:number,arg2:number,arg3:number):Promise<string>;
 
+export function ConvertTemperature(arg1:number,arg2:number,arg3:number):Promise<string>;
+
 export function ConvertWeight(arg1:number,arg2:number,arg3:number):Promise<string>;
 
 export function Greet(arg1:string):Promise<string>;
