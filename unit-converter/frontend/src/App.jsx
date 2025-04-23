@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { ConvertLength } from "../wailsjs/go/main/App";
+import { ConvertLength, ConvertWeight } from "../wailsjs/go/main/App";
 
 function App() {
     const [currentPage, setPage] = useState("length");
@@ -16,6 +16,18 @@ function App() {
         const from = parseInt(formData.get("from"));
         const to = parseInt(formData.get("to"));
         ConvertLength(length, from, to).then((response) => {
+            setResult(response);
+        });
+    }
+
+    const convertWeight = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const weight = parseFloat(formData.get("weight"));
+        const from = parseInt(formData.get("from"));
+        const to = parseInt(formData.get("to"));
+        ConvertWeight(weight, from, to).then((response) => {
             setResult(response);
         });
     }
@@ -61,24 +73,24 @@ function App() {
                 );
             case "weight":
                 return (
-                    <form id="weight-form">
+                    <form onSubmit={convertWeight}  id="weight-form">
                         <label className="label">Enter the weight to convert</label>
                         <input name="weight" className="input-field"></input>
                         <label className="label">Unit to convert from</label>
                         <select name="from" className="selector" form="weight-form">
-                            <option value="milligram">Milligram</option>
-                            <option value="gram">Gram</option>
-                            <option selected="selected" value="kilogram">Kilogram</option>
-                            <option value="ounce">Ounce</option>
-                            <option value="pound">Pound</option>
+                            <option value="0">Milligram</option>
+                            <option value="1">Gram</option>
+                            <option selected="selected" value="2">Kilogram</option>
+                            <option value="3">Ounce</option>
+                            <option value="4">Pound</option>
                         </select>
                         <label className="label">Unit to convert to</label>
                         <select name="to" className="selector" form="weight-form">
-                            <option value="milligram">Milligram</option>
-                            <option value="gram">Gram</option>
-                            <option value="kilogram">Kilogram</option>
-                            <option value="ounce">Ounce</option>
-                            <option selected="selected" value="pound">Pound</option>
+                            <option value="0">Milligram</option>
+                            <option value="1">Gram</option>
+                            <option value="2">Kilogram</option>
+                            <option value="3">Ounce</option>
+                            <option selected="selected" value="4">Pound</option>
                         </select>
                         <button type="submit" className="button">Convert</button>
                     </form>
@@ -128,9 +140,9 @@ function App() {
         <div id="App">
             <h1 className="big-text">Unit Converter</h1>
             <div id="topbar" className="topbar">
-                <div id="topbar-length" className={currentPage == "length" ? "topbar-button  selected" : "topbar-button"} onClick={() => setPage("length")}>Length</div>
-                <div id="topbar-weight" className={currentPage == "weight" ? "topbar-button  selected" : "topbar-button"} onClick={() => setPage("weight")}>Weight</div>
-                <div id="topbar-temperature" className={currentPage == "temperature" ? "topbar-button  selected" : "topbar-button"} onClick={() => setPage("temperature")}>Temperature</div>
+                <div id="topbar-length" className={currentPage == "length" ? "topbar-button  selected" : "topbar-button"} onClick={() => {setPage("length"); setResult(null)}}>Length</div>
+                <div id="topbar-weight" className={currentPage == "weight" ? "topbar-button  selected" : "topbar-button"} onClick={() => {setPage("weight"); setResult(null)}}>Weight</div>
+                <div id="topbar-temperature" className={currentPage == "temperature" ? "topbar-button  selected" : "topbar-button"} onClick={() => {setPage("temperature"); setResult(null)}}>Temperature</div>
             </div>
             <div id="workspace" className="workspace">
                 {renderForm()}

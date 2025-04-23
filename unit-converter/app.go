@@ -32,3 +32,9 @@ func (a *App) ConvertLength(length float64, from int, to int) string {
 	unitsNames := [8]string{"mm", "cm", "m", "km", "in", "ft", "yd", "mi"}
 	return fmt.Sprintf("%v%s = %v%s", length, unitsNames[from], math.Round(length*scales[from]/scales[to]*10000)/10000, unitsNames[to])
 }
+
+func (a *App) ConvertWeight(weight float64, from int, to int) string {
+	scales := [5]float64{0.000001, 0.001, 1, 0.02835, 0.453515}
+	unitsNames := [5]string{"mg", "g", "kg", "oz", "lb"}
+	return fmt.Sprintf("%v%s = %v%s", weight, unitsNames[from], math.Round(weight*scales[from]/scales[to]*10000)/10000, unitsNames[to])
+}

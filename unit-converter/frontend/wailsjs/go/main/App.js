@@ -6,6 +6,10 @@ export function ConvertLength(arg1, arg2, arg3) {
   return window['go']['main']['App']['ConvertLength'](arg1, arg2, arg3);
 }
 
+export function ConvertWeight(arg1, arg2, arg3) {
+  return window['go']['main']['App']['ConvertWeight'](arg1, arg2, arg3);
+}
+
 export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
